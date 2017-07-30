@@ -3,9 +3,18 @@
     <h1>
         My favourite {{title}}!
     </h1>
+    <ul class="hv-hyvers-list">
+        <li *ngFor="let hyver of hyvers" [ngClass]="{'hv-most-faved': hyver.rank === 1}">
+            <div class="hv-hyvers-list-wrapper">
+                <img src="{{ hyver.photoUrl }}" width="100%">
+                <div>
+                    <p>#{{ hyver.rank }} <b>{{ hyver.name }}</b></p>
+                    <p>{{hyver.title}}</p>
+                </div>
+            </div>
+        </li>
+        <p *ngIf="hyvers.length < 1">None of them are my favs.</p>
+    </ul>
 </div>
-<ul>
-    <li *ngFor="let hyver of hyvers">{{hyver}}</li>
-    <p *ngIf="hyvers.length < 1">None of them are my favs.</p>
-</ul>
+
 

@@ -1,0 +1,17 @@
+.hv-hyvers-list {
+    list-style-type: none;
+    padding:25px;
+}
+.hv-hyvers-list li {
+    width:180px;
+    display: inline-block;
+    margin:10px;
+    position: relative;
+    overflow:hidden;
+    border:1px solid gray;
+    text-align:center
+}
+
+.hv-most-faved {
+    background-color: aquamarine;
+}
