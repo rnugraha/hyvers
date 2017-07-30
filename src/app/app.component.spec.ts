@@ -1,15 +1,22 @@
 import { TestBed, async } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { HyverEditorComponent } from './hyver-editor/hyver-editor.component';
+import { Hyver } from './hyver';
 
 describe('AppComponent', () => {
+
+    const hyver = new Hyver(5, 'Nivetika Mahasivam', 'Milk Tea Superintendent', 'http://x');
+    const hyver2 = new Hyver(4, 'Riza Nugraha', 'Dancer', 'http://y');
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
                 FormsModule
             ],
             declarations: [
-                AppComponent
+                AppComponent,
+                HyverEditorComponent
             ],
         }).compileComponents();
     }));
@@ -37,5 +44,21 @@ describe('AppComponent', () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
         expect(app.hyvers.length).toEqual(5);
+    }));
+
+    it('should return true when checking right selected hyver', async(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
+        app.selectedHyver = hyver;
+        const isSelected = app.isSelected(hyver);
+        expect(isSelected).toEqual(true);
+    }));
+
+    it('should select a hyver', async(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
+        app.selectedHyver = hyver;
+        app.selectHyver(hyver2);
+        expect(app.selectedHyver.name).toEqual('Riza Nugraha');
     }));
 });

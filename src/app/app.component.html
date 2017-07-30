@@ -19,21 +19,7 @@
         <p *ngIf="hyvers.length < 1">None of them are my favs.</p>
     </ul>
 
-    <div *ngIf="selectedHyver" class="hv-selected-panel">
-        <h2>Hyver Editor</h2>
-
-        <label>Name: </label>
-        <input type="text" name="fullname" [(ngModel)]="selectedHyver.name"/><br>
-
-        <label>Rank #: </label>
-        <input type="text" name="rank" [(ngModel)]="selectedHyver.rank"/><br>
-
-        <label>Job Title: </label>
-        <input type="text" name="title" [(ngModel)]="selectedHyver.title"/><br>
-
-        <label>PhotoURL: </label>
-        <input type="text" name="photoUrl" [(ngModel)]="selectedHyver.photoUrl"/><br>
-    </div>
+    <app-hyver-editor [hyver]="selectedHyver"></app-hyver-editor>
 
 </div>
 

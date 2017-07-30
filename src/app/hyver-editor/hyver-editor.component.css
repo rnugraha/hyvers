@@ -1,0 +1,19 @@
+.hv-selected-panel {
+    width: 800px;
+    padding: 1em;
+    border: solid grey 1px !important;
+    display: table;
+    margin: 0 auto;
+    background-color: lightgrey;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: medium;
+}
