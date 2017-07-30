@@ -17,15 +17,24 @@ const HYVERS: Hyver[] = [
 export class AppComponent implements OnInit {
 
     title = 'Hyvers';
-    hyvers = HYVERS;
+    hyvers: Hyver[] = HYVERS;
+    selectedHyver: Hyver;
 
     constructor() {
     }
 
-    private sortAscending() {
+    private sortAscending(): Array<Hyver> {
         return this.hyvers.sort( (hyverX, hyverY) => {
             return hyverX.rank - hyverY.rank;
         });
+    }
+
+    isSelected(hyver: Hyver): boolean {
+        return this.selectedHyver ? hyver.name === this.selectedHyver.name : false;
+    }
+
+    selectHyver(hyver: Hyver): void {
+        this.selectedHyver = hyver;
     }
 
     ngOnInit(): void {

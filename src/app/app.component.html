@@ -3,8 +3,11 @@
     <h1>
         My favourite {{title}}!
     </h1>
+
     <ul class="hv-hyvers-list">
-        <li *ngFor="let hyver of hyvers" [ngClass]="{'hv-most-faved': hyver.rank === 1}">
+        <li *ngFor="let hyver of hyvers"
+            [ngClass]="{'hv-most-faved': hyver.rank == 1, 'hv-selected': isSelected(hyver)}"
+            (click)="selectHyver(hyver)">
             <div class="hv-hyvers-list-wrapper">
                 <img src="{{ hyver.photoUrl }}" width="100%">
                 <div>
@@ -15,6 +18,23 @@
         </li>
         <p *ngIf="hyvers.length < 1">None of them are my favs.</p>
     </ul>
+
+    <div *ngIf="selectedHyver" class="hv-selected-panel">
+        <h2>Hyver Editor</h2>
+
+        <label>Name: </label>
+        <input type="text" name="fullname" [(ngModel)]="selectedHyver.name"/><br>
+
+        <label>Rank #: </label>
+        <input type="text" name="rank" [(ngModel)]="selectedHyver.rank"/><br>
+
+        <label>Job Title: </label>
+        <input type="text" name="title" [(ngModel)]="selectedHyver.title"/><br>
+
+        <label>PhotoURL: </label>
+        <input type="text" name="photoUrl" [(ngModel)]="selectedHyver.photoUrl"/><br>
+    </div>
+
 </div>
 
 
