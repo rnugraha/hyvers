@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HyverEditorComponent } from './hyver-editor/hyver-editor.component';
+import { HyverService } from './hyver.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { HyverEditorComponent } from './hyver-editor/hyver-editor.component';
       BrowserModule,
       FormsModule
   ],
-  providers: [],
+  providers: [HyverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

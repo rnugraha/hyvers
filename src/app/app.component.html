@@ -4,7 +4,7 @@
         My favourite {{title}}!
     </h1>
 
-    <ul class="hv-hyvers-list">
+    <ul class="hv-hyvers-list" *ngIf="hyvers">
         <li *ngFor="let hyver of hyvers"
             [ngClass]="{'hv-most-faved': hyver.rank == 1, 'hv-selected': isSelected(hyver)}"
             (click)="selectHyver(hyver)">
@@ -18,9 +18,9 @@
         </li>
         <p *ngIf="hyvers.length < 1">None of them are my favs.</p>
     </ul>
+    <p *ngIf="!hyvers">Loading ...</p>
 
     <app-hyver-editor [hyver]="selectedHyver"></app-hyver-editor>
-
 </div>
 
 
