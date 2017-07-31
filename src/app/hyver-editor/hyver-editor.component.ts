@@ -1,5 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Hyver } from '../hyver';
+import { HyverService } from '../hyver.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'app-hyver-editor',
@@ -8,12 +12,21 @@ import { Hyver } from '../hyver';
 })
 export class HyverEditorComponent implements OnInit {
 
-    @Input()
     hyver: Hyver;
 
-    constructor() {
+    constructor(private hyverService: HyverService,
+                private route: ActivatedRoute,
+                private location: Location) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
+        // we want to get the id of hyver and then get the
+        this.route.paramMap
+            .switchMap((params: ParamMap) => this.hyverService.getHyver(+params.get('id')))
+            .subscribe(hyver => this.hyver = hyver);
+    }
+
+    goBack(): void {
+        this.location.back();
     }
 }

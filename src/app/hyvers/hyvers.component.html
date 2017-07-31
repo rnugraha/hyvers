@@ -1,0 +1,16 @@
+<ul class="hv-hyvers-list" *ngIf="hyvers">
+    <li *ngFor="let hyver of hyvers"
+        [ngClass]="{'hv-most-faved': hyver.rank == 1, 'hv-selected': isSelected(hyver)}"
+        (click)="selectHyver(hyver)">
+        <div class="hv-hyvers-list-wrapper">
+            <img src="{{ hyver.photoUrl }}" width="100%">
+            <div>
+                <p>#{{ hyver.rank }} <b>{{ hyver.name }}</b></p>
+                <p>{{hyver.title}}</p>
+                <p><button (click)="gotoDetail(hyver)">Edit</button></p>
+            </div>
+        </div>
+    </li>
+    <p *ngIf="hyvers.length < 1">None of them are my favs.</p>
+</ul>
+<p *ngIf="!hyvers">Loading ...</p>

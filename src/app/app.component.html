@@ -4,23 +4,10 @@
         My favourite {{title}}!
     </h1>
 
-    <ul class="hv-hyvers-list" *ngIf="hyvers">
-        <li *ngFor="let hyver of hyvers"
-            [ngClass]="{'hv-most-faved': hyver.rank == 1, 'hv-selected': isSelected(hyver)}"
-            (click)="selectHyver(hyver)">
-            <div class="hv-hyvers-list-wrapper">
-                <img src="{{ hyver.photoUrl }}" width="100%">
-                <div>
-                    <p>#{{ hyver.rank }} <b>{{ hyver.name }}</b></p>
-                    <p>{{hyver.title}}</p>
-                </div>
-            </div>
-        </li>
-        <p *ngIf="hyvers.length < 1">None of them are my favs.</p>
-    </ul>
-    <p *ngIf="!hyvers">Loading ...</p>
-
-    <app-hyver-editor [hyver]="selectedHyver"></app-hyver-editor>
+    <div style="margin-bottom: 15px;">
+        <a href="home">Home</a> | <a href="hyvers">Hyvers</a>
+    </div>
+    <router-outlet></router-outlet>
 </div>
 
 

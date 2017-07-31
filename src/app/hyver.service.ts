@@ -26,8 +26,14 @@ export class HyverService {
 
     getHyversSlowly(): Promise<Hyver[]> {
         return new Promise(resolve => {
-            setTimeout(() => resolve(this.getHyvers()), 20000);
+            setTimeout(() => resolve(this.getHyvers()), 2000);
         });
     }
 
+    getHyver(id: number): Promise<Hyver> {
+        return this.getHyversAsPromise()
+            .then(hyvers => hyvers.find(
+                hyver => hyver.id === id
+            ));
+    }
 }
