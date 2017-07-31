@@ -8,6 +8,9 @@ import { HyverService } from './hyver.service';
 import { RouterModule } from '@angular/router';
 import { HyversComponent } from './hyvers/hyvers.component';
 import { HomeComponent } from './home/home.component';
+import { HttpModule } from '@angular/http';
+import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
     declarations: [
@@ -19,6 +22,8 @@ import { HomeComponent } from './home/home.component';
     imports: [
         BrowserModule,
         FormsModule,
+        HttpModule,
+        InMemoryWebApiModule.forRoot(InMemoryDataService),
         RouterModule.forRoot([
             {
                 path: '',

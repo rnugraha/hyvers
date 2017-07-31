@@ -1,39 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Hyver } from './hyver';
-import { HYVERS } from './mock-hyvers';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class HyverService {
 
-    constructor() {
+    private hyversUrl = 'api/hyvers';
+
+    constructor(private http: Http) {
     }
 
-    /**
-     *  Get hyvers from mock data
-     * @returns {Hyver[]}
-     */
-    getHyvers(): Hyver[] {
-        return HYVERS;
-    }
-
-    /**
-     * Get hyvers as promise
-     * @returns {Promise<Hyver[]>}
-     */
     getHyversAsPromise(): Promise<Hyver[]> {
-        return Promise.resolve(HYVERS);
-    }
+        return this.http.get(this.hyversUrl)
+            .toPromise()
+            .then(response => response.json().data as Hyver[])
+            .catch(this.handleError);
 
-    getHyversSlowly(): Promise<Hyver[]> {
-        return new Promise(resolve => {
-            setTimeout(() => resolve(this.getHyvers()), 2000);
-        });
     }
 
     getHyver(id: number): Promise<Hyver> {
-        return this.getHyversAsPromise()
-            .then(hyvers => hyvers.find(
-                hyver => hyver.id === id
-            ));
+        const url = `${this.hyversUrl}/${id}`;
+        return this.http.get(url)
+            .toPromise()
+            .then(response => response.json().data as Hyver)
+            .catch(this.handleError);
+    }
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
     }
 }

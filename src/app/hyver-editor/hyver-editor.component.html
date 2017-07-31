@@ -1,6 +1,9 @@
 <div *ngIf="hyver" class="hv-selected-panel">
     <h2>Hyver Editor</h2>
 
+    <img src="{{ hyver.photoUrl }}" width="40%">
+    <br>
+
     <label>Name: </label>
     <input type="text" name="fullname" [(ngModel)]="hyver.name"/><br>
 

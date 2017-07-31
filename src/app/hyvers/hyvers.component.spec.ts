@@ -6,8 +6,10 @@ import { HyverEditorComponent } from '../hyver-editor/hyver-editor.component';
 import { HyverService } from '../hyver.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MockRouter } from '../mock-route.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MockBackend } from '@angular/http/testing';
+import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
+
 
 describe('HyversComponent', () => {
 
@@ -20,11 +22,18 @@ describe('HyversComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-                FormsModule
+                FormsModule,
+                RouterTestingModule
             ],
             providers: [
                 HyverService,
-                {provide: Router, useClass: MockRouter}
+                MockBackend,
+                BaseRequestOptions,
+                {
+                    provide: Http,
+                    useFactory: (backend, options) => new Http(backend, options),
+                    deps: [MockBackend, BaseRequestOptions]
+                }
             ],
             declarations: [
                 HyversComponent,

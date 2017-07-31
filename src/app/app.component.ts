@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.hyverService.getHyversSlowly().then( hyvers => {
+        this.hyverService.getHyversAsPromise().then( hyvers => {
             this.hyvers = hyvers;
             this.sortAscending();
         });

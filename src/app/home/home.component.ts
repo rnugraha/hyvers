@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.numberOfHyvers = this.service.getHyvers().length;
+       this.service.getHyversAsPromise()
+           .then( hyvers => this.numberOfHyvers = hyvers.length);
     }
-
 }
